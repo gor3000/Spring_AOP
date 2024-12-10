@@ -1,12 +1,16 @@
-package aop;
-import AOP.Library;
+package AOP;
 
-public class Testl {
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+public class Test1 {
     public static void main(String[]  args) {
         AnnotationConfigApplicationContext context =
                 new AnnotationConfigApplicationContext(MyConfig.class);
-        Library library = context .getBean ( name: "libraryBear.",  Library.class) ;
-        library.getBookO ;
-) }
+        Library library = context .getBean ( "libraryBear",  Library.class) ;
+
+
+        library.getBook();
+
+        context.close();
+ }
 }
-context.close();
