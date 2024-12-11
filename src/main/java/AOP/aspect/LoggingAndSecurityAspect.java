@@ -9,19 +9,47 @@ import org.springframework.stereotype.Component;
 @Component
 @Aspect
 public class LoggingAndSecurityAspect {
-    @Pointcut("execution(* get* ())")
-    private void allGetMethod() {
+
+    @Pointcut("execution(* AOP.UniLibrary.get*())")
+    private void allGetMethodsFromUniLibrary() {
+    }
+
+    @Pointcut("execution(* AOP.UniLibrary.return*())")
+    private void allReturnMethodsFromUniLibrary() {
+    }
+
+    @Pointcut("allGetMethodsFromUniLibrary()||allReturnMethodsFromUniLibrary()")
+    private void allGetUndReturnMethodsFromUniLibrary() {
     }
 
 
-    @Before("allGetMethod()")
+    @Before("allGetMethodsFromUniLibrary()")
     public void beforeGetLoggingAdvice() {
-        System.out.println("beforeGetBookAdvice: попытка получить книгу/журнал");
+        System.out.println("beforeGetLoggingAdvice: writing Log #-1");
     }
 
-    @Before("allGetMethod()")
-    public void beforeGetSecurityAdvice() {
+    @Before("allReturnMethodsFromUniLibrary()")
+    public void beforeReturnLoggingAdvice() {
+        System.out.println("beforeReturnLoggingAdvice: writing Log #-2");
+    }
 
-        System.out.println("beforeGetSecurityAdvice : проверка прав на получение" + " книги/журнала");
+    @Before("allGetUndReturnMethodsFromUniLibrary()")
+    public void beforeGetUndReturnLoggingAdvice() {
+        System.out.println("beforeGetUndReturnLoggingAdvice: writing Log #-3");
+
+
+//    @Pointcut("execution(* get* ())")
+//    private void allGetMethod() {
+//    }
+
+//    @Before("allGetMethod()")
+//    public void beforeGetLoggingAdvice() {
+//        System.out.println("beforeGetBookAdvice: попытка получить книгу/журнал");
+//    }
+//
+//    @Before("allGetMethod()")
+//    public void beforeGetSecurityAdvice() {
+//
+//        System.out.println("beforeGetSecurityAdvice : проверка прав на получение" + " книги/журнала");
     }
 }
