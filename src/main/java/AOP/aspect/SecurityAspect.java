@@ -1,7 +1,6 @@
 package AOP.aspect;
 
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
@@ -9,8 +8,9 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Order(2)
 public class SecurityAspect {
-    @Before("AOP.aspect.MyPointcuts.allGetMethod()")
-    public void beforeGetLoggingAdvice() {
-        System.out.println("beforeGetBookAdvice: проверка прав на получить книгу/журнал  " + "      #- 2");
-    }
+//    @Before("AOP.aspect.MyPointcuts.allAddMethods()")
+//    public void beforeAddLoggingAdvice() {
+//        System.out.println("beforeGetBookAdvice: проверка прав на получить книгу/журнал  " + "      #- 2");
+//        System.out.println("------------------------------------------------------------");
+//    }
 }
